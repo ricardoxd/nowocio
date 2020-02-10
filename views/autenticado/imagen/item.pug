@@ -1,0 +1,36 @@
+div(id="imagenes")
+    if imagenes != undefined
+        - var limit = imagenes.length;
+    else
+        - var limit = 2;
+    input(id="first",type="text",hidden="hidden",value="0")
+    input(id="limit",type="text",hidden="hidden",value=limit)
+    if imagenes != undefined
+        for item in imagenes
+              -console.log('sddw');
+              -console.log(item);
+              if item != undefined
+                -var idpost = item.id_imagen;
+                - tipo ='nowocio';
+              else 
+                -var idpost = '';    
+              -var idpost2 = item.id_facebook_feed||'';
+              -var idpost3 = item.id_youtube_feed||'';
+              if item.publishedAt != undefined
+                - tipo ='youtube';
+              else if item.created_time != undefined
+                - tipo = 'facebook';
+              div(class="img-contenedor "+tipo,data-idyt=idpost3,data-idfb=idpost2,data-id=idpost)
+                  -var u = perfilVisitado.nombre_usuario;
+                  -var url=item.url_titulo;
+                  h2 #{item.titulo}
+                  - var id = item.id_imagen;
+                  a(href="/imagen/"+id)
+                      img(src="/archivos/imagenes/"+id+"."+item.extension)
+                  p #{item.mensaje}
+                  include ../megusta/item.pug 
+                  include ../comentario/escribir.pug
+                
+    - console.log('feedx');
+    - console.log(imagenes);
+    

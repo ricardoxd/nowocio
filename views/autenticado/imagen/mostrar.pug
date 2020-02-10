@@ -1,0 +1,8 @@
+extends ../../layout
+
+block contenido
+        div(class="img-contenedor")
+            h1 #{imagen.titulo}
+            - var id = imagen.id_imagen;
+            img(src="/archivos/imagenes/"+id+"."+imagen.extension)
+            p por #{imagen.usuario.email}

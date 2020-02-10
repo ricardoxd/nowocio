@@ -1,0 +1,14 @@
+extends ../layout
+
+block contenido
+    
+    .contenedor-formulario
+      a(href="/auth/facebook",style="margin-left: 20%")
+        img(src="/archivos/imagenes/fb.png",width= "150px;")
+      a(href="/auth/youtube",style="margin-left: 35%")
+        img(src="/archivos/imagenes/yt.login.png",width= "150px;")
+      .wrap
+        h2 #{mensaje}
+        if enlace != undefined
+            a(href=enlace) #{textoenlace}
+            

@@ -1,0 +1,22 @@
+-var u = perfilVisitado.nombre_usuario;
+-console.log(u)
+div(id="menuperfil")    
+    div(id="menuperfil_left")
+        nav()
+            ul
+                //li
+                    a(href="/"+u+"/videos") Videos
+                //li
+                    a(href="/"+u+"/imagenes") Imagenes
+                li
+                    a(href="/"+u+"/siguiendo") Siguiendo
+                li
+                    a(href="/"+u+"/seguidores") Seguidores
+    div(id="menuperfil_right")
+        nav()
+            ul
+                if perfilVisitado.categorias != undefined
+                    for item in perfilVisitado.categorias
+                        - var url =item.url_categoria;
+                        li
+                            a(href="/"+u+"/"+url) #{item.nombre_categoria}

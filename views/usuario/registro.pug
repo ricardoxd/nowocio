@@ -1,0 +1,23 @@
+.contenedor-formulario
+      .wrap
+        form.formulario(action='/usuario', name='formulario_registro', method='POST')
+          div
+            .input-group
+              input#nombre(type='text', name='nombre',maxlength="15")
+              label.label(for='nombre') Nombre de Usuario:"Solo letras y números"
+            .input-group
+              input#email(type='email', name='email')
+              label.label(for='email') Correo electrónico:
+            .input-group
+              input#password(type='password', name='password')
+              label.label(for='password') Contraseña:
+            .input-group.radio
+              input#hombre(type='radio', name='sexo', value='Hombre')
+              label(for='hombre') Hombre
+              input#mujer(type='radio', name='sexo', value='Mujer')
+              label(for='mujer') Mujer
+            .input-group.checkbox
+              input#terminos(type='hidden', name='terminos', value='true')
+              label(for='terminos') Al hacer clic en "Crear cuenta", aceptas las Condiciones y confirmas que leíste nuestra Política de datos
+            input#btn-submit(type='submit', value='Crear Cuenta')
+            a(href="/login",class="enlace") #{__('I have account')}

@@ -1,0 +1,15 @@
+extends ../../layout
+
+block contenido
+        h1 Mis imagenes
+        div(class="images")
+                for imagen in imagenes
+                    h2=imagen.titulo
+                    - var id = imagen.id_imagen;
+                    a(href="/imagen/"+id+"/editar") Editar
+                    form(action="/imagen/"+id+"?_method=DELETE",method="POST")
+                        input(type="submit",value="Eliminar")
+            
+        
+
+

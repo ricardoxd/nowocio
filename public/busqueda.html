@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Element V2: Custom Search Engine Advanced Results-only Layout Demo</title>
+<style type="text/css">
+h4.warning {color: red;}
+h4.recommendation {color: green;}
+</style>
+<!-- Put the following javascript before the closing </head> tag. -->
+<script>
+  (function() {
+    var cx = '000888210889775888983:3gepro1fol8';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+</head>
+
+<body>
+<!-- Demo Information section -->
+<img src="http://www.google.com/intl/en/images/logos/custom_search_logo_beta.gif">
+<h4>
+  Advanced Result-only Layout Demo: submit searches with your own search box
+</h4>
+<h4 class="warning">
+  Google custom search branding is required for standard edition.
+</h4>
+<p>You can add auto-complete and/or transliteration to your own search box.</p>
+<p>
+  <a href="branding_style.html">Learn more</a> about all the branding style
+  options.
+</p>
+<p>View this page's source more implementation information.</p>
+<h4 class="recommendation">
+  We highly recommend using the <a href="two-column_v2.html">Two-column</a> or
+  <a href="two-page_v2.html">Two-page</a> layout options to replace the
+  implementation here, since they:
+  <ul>
+    <li>Have less setup overhead;</li>
+    <li>Have internationalization support for search box;</li>
+    <li>
+      Get new features automatically, including autocomplete, branding, and etc.
+    </li>
+  </ul>
+</h4>
+
+<p>
+
+<!-- *******************************************
+  SPECIAL NOTES:
+  This is for Element code snippet with Google branding, and optional
+  transliteration and autocompletes.
+  i)   You can selectively add code part2 (1) and/or (2). However, google
+       branding (3) is required.
+  ii) You must explicitly enable autocompletions in "Autocompletions" tab in
+       Custom Search Engine control panel.
+******************************************** -->
+
+<!-- Search box form -->
+<div>
+  <!--
+    Wrap the form separately in a div, so t13n won't change the form's location.
+  -->
+  <form onsubmit="return executeQuery();" id="cse-search-box-form-id">
+    <!-- This is the input searc box -->
+    <input type="text" id="cse-search-input-box-id" size="25" autocomplete="off"/>
+    <!-- This is the search button -->
+    <input type="submit" value="Search"/>
+  </form>
+</div>
+<!-- End of search box form -->
+
+<!-- (1) Attach autocomplete to the search box -->
+<script>
+  var enableAutoComplete = function() {
+    google.search.CustomSearchControl.attachAutoCompletionWithOptions(
+      '000888210889775888983:8mn4x_mf-yg',
+      document.getElementById('cse-search-input-box-id'),
+      'cse-search-box-form-id',
+      // set to true to prevent the search box form from being submitted, since
+      // the search control displaying the results is on the same page.
+      {'preferOnSubmitToSubmit': true});
+  };
+
+  var myCallback = function() {
+    // Search module is loaded.
+    if (document.readyState == 'complete') {
+      enableAutoComplete();
+    } else {
+      google.setOnLoadCallback(enableAutoComplete, true);
+    }
+  };
+
+  window.__gcse = {
+    callback: myCallback
+  };
+</script>
+<!-- End of autocomplete -->
+
+<!-- (2) Attach transliteration before the search box-->
+<!-- Set the "form" URL parameter to the id of the form containing the input
+         search box.
+     Set the "inputbox" URL parameter to the name or id of the query textbox.
+         'q' will be used if it's not specified.
+     Set the "t13n_langs" to include all the languages you want to transliterate
+         the given text in query textbox to, separated by ','.  Find the list of
+         supported languages at
+    http://www.google.com/support/customsearch/bin/answer.py?hl=en&answer=144433
+-->
+<script src="http://www.google.com/jsapi"></script>
+<script type="text/javascript"
+        src="http://www.google.com/cse/t13n?form=cse-search-box-form-id&t13n_langs=es,en&inputbox=cse-search-input-box-id">
+</script>
+<!-- End of transliteration -->
+
+<!-- (3) REQUIRED: Attach the Google branding watermark to your search box. -->
+<!-- WARNING: Branding attachment should be after transliteration -->
+<!-- Set the "form" URL parameter to the id of the form containing the input
+         search box.
+     Set the "inputbox" URL parameter to the name or id of the query textbox.
+         'q' will be used if it's not specified.
+     Set the "lang" URL parameter to localize the branding for a specific
+         language. Find the list of supported languages at
+         http://developers.google.com/custom-search/docs/ref_languages.html
+-->
+<script type="text/javascript"
+        src="http://www.google.com/cse/brand?form=cse-search-box-form-id&lang=es&inputbox=cse-search-input-box-id">
+</script>
+<!-- End of Google branding watermark -->
+
+<!-- Element code snippet -->
+<script type="text/javascript">
+  // executeQuery() is only required if the control showing results is on the
+  // same page as your searchbox.
+  function executeQuery() {
+    var input = document.getElementById('cse-search-input-box-id');
+    var element = google.search.cse.element.getElement('results');
+    if (input.value == '') {
+      element.clearAllResults();
+    } else {
+      element.execute(input.value);
+    }
+    return false;
+  }
+</script>
+<link rel="stylesheet" href="http://www.google.com/cse/static/style/look/default.css" type="text/css" />
+<!-- End of Element code snippet -->
+
+<!-- Place this tag where you want the search results to render -->
+<gcse:searchresults-only gname="results"></gcse:searchresults-only>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

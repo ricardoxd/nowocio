@@ -1,0 +1,230 @@
+/* 
+    Created on : 11/09/2017, 09:18:13 PM
+    Author     : ricardo
+*/
+@colortema:rgba(232,228,93,.2);
+body{
+	background:#efefef;
+	margin:0px;
+	height:900px;
+	font-family: sans-serif;
+}
+
+.chat_box{
+	position:fixed;
+	right:1px;
+	bottom:0px;
+	width:200px;
+        z-index: 500;
+        border: 1px solid rgb(169, 169, 169);
+}
+.chat_body{
+	background: rgba(255, 255, 255, 0.84);
+	height:400px;
+	padding:3px 0px;
+        overflow-y: scroll;
+}
+
+.chat_head{
+    background: @colortema;
+    color: #777;
+    padding: 2px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+}
+.msg_head{
+background: @colortema;
+	    padding: 0px;
+    color: #2b2b2b;
+	font-weight:bold;
+	cursor:pointer;
+	border-radius:5px 5px 0px 0px;
+        border-bottom: 1px solid #a9a9a9;
+}
+.msg_box{
+	position:fixed;
+	bottom:0px;
+	width:220px;
+	background:white;
+	border-radius:5px 5px 0px 0px;
+        border: 1px solid rgb(169, 169, 169);
+}
+
+
+
+.msg_body{
+	background: #d6d6d6;
+	height:200px;
+	font-size:12px;
+	padding:15px;
+	overflow:auto;
+	overflow-x: hidden;
+}
+.msg_input{
+	width:100%;
+	border: 1px solid #DDDDDD;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box; 
+        resize: none;
+            padding: 5px;
+}
+
+.close{
+    float: right;
+    cursor: pointer;
+    top: 10px;
+    position: absolute;
+    right: 5px;
+    font-size: 14px;
+    color: #585858;
+}
+.minimize{
+	float:right;
+	cursor:pointer;
+	padding-right:5px;
+	
+}
+
+.user{
+    position: relative;
+    padding: 0;
+    background: no-repeat;
+    height: 32px;
+    width: 32px;
+    border: 1px solid rgba(117, 117, 117, 0.37);
+    border-radius: 50%; 
+    background-position: center;
+background-size: cover;
+}
+.user:hover{
+	
+	cursor:pointer;
+
+}
+.user:before{
+	    content: '';
+    left: 35px;
+    bottom: 14px;
+	position:absolute;
+	height:10px;
+	width:10px;
+	border-radius:6px;
+        background: #2ecc71;
+}
+.userx{
+    position: relative;
+    padding: 0;
+    background: no-repeat;
+    height: 32px;
+    width: 32px;
+    border: 1px solid rgba(117, 117, 117, 0.37);
+    border-radius: 50%; 
+    background-position: center;
+background-size: cover;
+}
+.userx:hover{
+	
+	cursor:pointer;
+
+}
+
+.vero:before{
+	    content: '';
+    left: 35px;
+    bottom: 14px;
+	position:absolute;
+	height:10px;
+	width:10px;
+	border-radius:6px;
+        background: #fff;
+}
+.user:after{
+    content:attr(data-name);
+    position: absolute;
+    font-weight: normal;
+    height: 10px;
+    width: 10px;
+    left: 44px;
+    top: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    width: 150px;
+    background-color: rgba(136, 136, 136, 0.19);
+    height: 21px;
+}
+.userx:after{
+    content:attr(data-name);
+    position: absolute;
+    font-weight: normal;
+    height: 10px;
+    width: 10px;
+    left: 44px;
+    top: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    width: 150px;
+    background-color: rgba(136, 136, 136, 0.19);
+    height: 21px;
+}
+.msg_a{
+        border: 1px solid #bdbdbd;
+	position:relative;
+	background:#fff;
+	padding:10px;
+	min-height:10px;
+	margin-bottom:5px;
+	margin-right:10px;
+	border-radius:5px;
+}
+.msg_a:before{
+	content:"";
+	position:absolute;
+	width:0px;
+	height:0px;
+	border: 10px solid;
+	border-color: transparent #ffffff transparent transparent;
+	left:-20px;
+	top:7px;
+}
+
+
+.msg_b{
+	background: rgb(78, 73, 4);
+	padding:10px;
+	min-height:15px;
+	margin-bottom:5px;
+	position:relative;
+	margin-left:10px;
+	border-radius:5px;
+	word-wrap: break-word;
+            color: white;
+        border: 1px solid #bdbdbd;
+}
+.msg_b:after{
+	content:"";
+	position:absolute;
+	width:0px;
+	height:0px;
+	border: 10px solid;
+	border-color: transparent transparent transparent rgb(78, 73, 4);
+	right:-20px;
+	top:7px;
+}
+#send{
+    position: absolute;
+    height: 20px;
+    width: 30px;
+    margin-top: -31px;
+    right: 0px;
+    margin-right: 5px;
+    cursor: pointer;
+    border : solid 2px #ffffff;
+	border-radius : 3px;
+	moz-border-radius : 3px;
+	font-size : 10px;
+	background-color : #0a66c9;
+            padding-top: 9px;
+
+}

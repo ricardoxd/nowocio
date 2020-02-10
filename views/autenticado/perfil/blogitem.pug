@@ -1,0 +1,10 @@
+extends ../../layout
+
+block contenido
+  include portada.pug
+  include menu.pug  
+  include ../imagen/item.pug
+  script(src="/archivos/js/client.js")
+  script(src="/archivos/js/chat.js")
+  link(href="/archivos/stylesheets/chat.css",rel="stylesheet")
+  include ../chat/lista.pug

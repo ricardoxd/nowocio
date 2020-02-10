@@ -1,0 +1,90 @@
+div(id="imagenes")
+    if imagenes != undefined
+        - var limit = imagenes.length;
+    else
+        - var limit = 2;
+    input(id="first",type="text",hidden="hidden",value="0")
+    input(id="limit",type="text",hidden="hidden",value=limit)
+    if imagenes != undefined
+        for item in imagenes
+            var id = item.id_imagen
+            div(class="img-contenedor",data-id=id)
+              h2 #{item.imagen.titulo}
+              - var id = item.imagen.id_imagen;
+              a(href="/imagen/"+id)
+                  img(src="/archivos/imagenes/"+id+"."+item.imagen.extension)
+              p por #{item.usuario.email}
+    - console.log('feedx');
+    - console.log(feed);
+    if feed != undefined     
+            for itemf in feed
+                -var tipo='nowocio';
+                - console.log('feedx21xd');
+                -console.log(itemf);
+                if itemf.imagen != undefined
+                    -var idpost = itemf.imagen.id_imagen;
+                else 
+                    -var idpost = '';    
+                -var idpost2 = itemf.id_facebook_feed||'';
+                -var idpost3 = itemf.id_youtube_feed||'';
+                if itemf.publishedAt != undefined
+                    - tipo ='youtube';
+                else if itemf.created_time != undefined
+                    - tipo = 'facebook';
+                div(class="img-contenedor "+tipo,data-idyt=idpost3,data-idfb=idpost2,data-id=idpost)
+                    //  h2 #{itemf.message}
+                    //  p por #{itemf.id}
+                    - var id='',nombre='',id_imagen_perfil=''; 
+                    if itemf.usuario !=  undefined
+                       - id = itemf.usuario.id_usuario ;
+                       - nombre =itemf.usuario.nombre_usuario;
+                       - id_imagen_perfil =itemf.usuario.id_imagen_perfil;
+                    - var id = itemf.id_usuario||id;
+                    - var nombre = itemf.nombre_usuario||nombre;
+                    - var id_imagen_perfil = itemf.id_imagen_perfil||id_imagen_perfil;
+                    -var imgp='/archivos/perfil/'+id+'.jpg';
+                            if id_imagen_perfil != 0
+                                -imgp='http://localhost:3000/archivos/imagenes/'+id_imagen_perfil+'.jpg';
+                    a(href="/"+nombre)
+                      div(id="perfilmini",style="background-image:url('"+imgp+"')")
+                        div(class="left",style="background-image:url('https://icon-icons.com/icons2/860/PNG/512/happy_icon-icons.com_67810.png')")
+                        div(class="right",style="background-image:url('http://pngimg.com/uploads/youtube/youtube_PNG11.png')")
+                        div(class="nombre") #{nombre}
+                    if  itemf.imagen != undefined
+                        div(id="fecha")  #{itemf.imagen.time}
+                    else
+                        div(id="fecha") #{itemf.publishedAt||itemf.created_time}
+                    div(class="editaritem") :::
+                        ul(class="opcioned")
+                            if idpost != ''
+                                li
+                                    div(class="editario") 
+                                        a(href="/imagen/"+idpost+"/editar") Editar
+                            li
+                                div(class="eliminario") Eliminar  
+                            //li
+                                div(class="reportario") Reportar     
+                    h4 #{itemf.message}
+                    h4 #{itemf.story}
+                    if itemf.imagen != undefined
+                        h4 #{itemf.imagen.titulo}
+                    - console.log(itemf.imagen);
+                    if itemf.imagen != undefined
+                        - var imgserver='http://localhost:3001/archivos/imagenes/'+itemf.imagen.id_imagen+'.'+itemf.imagen.extension;
+                    else
+                        - var imgserver='';
+                    - var full_picture = itemf.high_url||itemf.full_picture||imgserver;
+                    - var link = "/imagen/"+id;
+                    if itemf.link != undefined
+                        - var link = itemf.link 
+                    a(href=link)
+                        img(src=full_picture)
+                    include ../megusta/item.pug     
+                    include ../comentario/escribir.pug
+script(id="imagen-template" type="text/x-handlebars-template")
+    div(class="img-contenedor")
+         a(href="/imagen/{{id_imagen}}")
+            h2 {{titulo}}
+         img(src="{{url}}")
+script(id="imagenes-template" type="text/x-handlebars-template")
+    include ../i.js 

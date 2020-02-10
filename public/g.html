@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>g</title>
+</head>
+<body>
+<div>
+  <script>
+  (function() {
+    var cx = '015102275056112357372:n7pz5_ycpvy';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<!-- (1) Attach autocomplete to the search box -->
+<script>
+  var enableAutoComplete = function() {
+    google.search.CustomSearchControl.attachAutoCompletionWithOptions(
+      '000888210889775888983:8mn4x_mf-yg',
+      document.getElementById('cse-search-input-box-id'),
+      'cse-search-box-form-id',
+      // set to true to prevent the search box form from being submitted, since
+      // the search control displaying the results is on the same page.
+      {'preferOnSubmitToSubmit': true});
+  };
+
+  var myCallback = function() {
+    // Search module is loaded.
+    if (document.readyState == 'complete') {
+      enableAutoComplete();
+    } else {
+      google.setOnLoadCallback(enableAutoComplete, true);
+    }
+  };
+
+  window.__gcse = {
+    callback: myCallback
+  };
+</script>
+<!-- End of autocomplete -->
+
+<gcse:search></gcse:search>
+</body>
+</html>

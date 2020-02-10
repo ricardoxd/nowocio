@@ -1,0 +1,26 @@
+div(id="usuarios")
+    if usuarios != undefined
+        - console.log('sex');
+        - console.log(usuarios);
+        for user in usuarios
+            div(class="user_box")
+                - var id = user.usuario.id_usuario||user.usuario.id_usuario;
+                - var nombre = user.usuario.nombre_usuario||user.usuario.nombre_usuario;
+                a(href="/"+nombre)
+                  div(id="perfilmini",style="background-image:url('/archivos/perfil/"+id+".jpg')")
+                    div(class="left",style="background-image:url('https://icon-icons.com/icons2/860/PNG/512/happy_icon-icons.com_67810.png')")
+                    div(class="right",style="background-image:url('http://pngimg.com/uploads/youtube/youtube_PNG11.png')")
+                    div(class="nombre") #{nombre}
+                    
+script(id="imagen-template" type="text/x-handlebars-template")
+    div(class="img-contenedor")
+         a(href="/imagen/{{id_imagen}}")
+            h2 {{titulo}}
+         img(src="{{url}}")
+script(id="imagenes-template" type="text/x-handlebars-template")
+    div(class="img-contenedor")
+          h2 {{imagen.titulo}}
+          a(href="/imagen/{{imagen.id_imagen}}")
+              img(src="/archivos/imagenes/{{imagen.id_imagen}}.{{imagen.extension}}")
+          p por {{usuario.email}}
+

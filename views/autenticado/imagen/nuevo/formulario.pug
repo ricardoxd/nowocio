@@ -1,0 +1,23 @@
+div(id="entrada")
+    form(action="/imagen",method="POST",enctype="multipart/form-data")
+            textarea( name="mensaje", placeholder=__(' ¿Que haces? '),id="title")
+            div(id="upload_imagen")
+                .wrapper
+                    button#img-result.no-image Upload Image
+                    div(onclick="procesar()",id="procesar") Escribir con voz
+                .upload-result
+                    button.hide-button Close
+                    pre.upload-result__content.
+                      \n
+            div
+                label Categoria: 
+                select(name="id_categoria")
+                    option(value="0") General
+                    option(value="2") Salud
+                    option(value="3") Android
+                    option(value="4") Tutorial
+                label(style="margin-left: 1%;") Titulo: 
+                input(type="text",name="titulo",placeholder=__('Como le llamarias a esto'),style="width: 56%;",id="titulo")
+            div
+                input(type="submit",value=__('Publicar'))
+            img(id="image")

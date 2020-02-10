@@ -1,0 +1,46 @@
+- var id = perfilVisitado.id_usuario;
+- var idport = perfilVisitado.id_imagen_portada;
+if idport == 0
+ -idport='p';
+div(id="portada",style="background-image:url('http://localhost:3001/archivos/imagenes/"+idport+".jpg')")
+    if perfilVisitado.id_usuario == user.id_usuario
+      form(action="/imagen",method="POST",enctype="multipart/form-data")
+            input(name="mensaje",id="title",type="hidden",value="Actualizo su foto de portada")
+            input(name="tipo",id="tipo",type="hidden",value="3")
+            div(id="editarportada",class="editarportada") Cambiar foto de portada
+            div(id="editarportada_c",class="editarportada c") Cancelar
+            div(id="editarportada_g",class="editarportada g") Guardar
+    -var u = perfilVisitado.nombre_usuario;
+    -var s = perfilVisitado.siguiendo?'Siguiendo':'Seguir';
+    div(id="usuario") #{u}
+    if id != user.id_usuario
+        div(id="seguir",data-id=u) #{s}
+    -var imgp='/archivos/perfil/'+id+'.jpg';
+    if perfilVisitado.id_imagen_perfil != 0
+        -imgp='http://localhost:3000/archivos/imagenes/'+perfilVisitado.id_imagen_perfil+'.jpg';
+    div(id="perfil",style="background-image:url("+imgp+")")
+      if perfilVisitado.id_usuario == user.id_usuario
+        form(action="/imagen",method="POST",enctype="multipart/form-data")
+            input(name="mensaje",id="title",type="hidden",value="Actualizo su foto de perfil")
+            input(name="tipo",id="tipo",type="hidden",value="2")
+            div(id="editarimagenperfil",class="editarimagenperfil") Cambiar foto de perfil
+            div(id="editarimagenperfil_c",class="editarimagenperfil c") Cancelar
+            div(id="editarimagenperfil_g",class="editarimagenperfil g") Guardar
+      if perfilVisitado.id_usuario != user.id_usuario      
+        -var con =u;
+        -var id_con =perfilVisitado.id_usuario;
+        -var idp = perfilVisitado.id_imagen_perfil;
+        div(id="cara",style="margin-left: 170px;margin-top: 75px;") 
+                     div(id=id_con,class="useronline_"+id_con+" user",data-id=id_con,data-name=con,data-idp=idp,style="") Mensaje a:               
+      -var red=0; 
+      if perfilVisitado.facebook_id != undefined
+        -red++;
+      if perfilVisitado.youtube_id != undefined
+        -red++;
+      if red == 2
+        -var style="margin-bottom: 45px;margin-right: -19px;"
+      div(class="left",style="background-image:url('https://icon-icons.com/icons2/860/PNG/512/happy_icon-icons.com_67810.png')")
+      if perfilVisitado.youtube_id != undefined
+        div(class="right",style="background-image:url('/archivos/imagenes/logo/yt.png')")
+      if perfilVisitado.facebook_id != undefined
+        div(class="right",style="background-image:url('/archivos/imagenes/logo/fb.png');"+style)

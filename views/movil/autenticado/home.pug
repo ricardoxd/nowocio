@@ -1,0 +1,30 @@
+extends ../layout
+
+block contenido
+  h1= title
+  h2 Bienvenido #{user.email} a #{title} #{__('Hello')}
+  div(id="imagenes")
+    - var limit = imagenes.length;
+    input(id="first",type="text",hidden="hidden",value="0")
+    input(id="limit",type="text",hidden="hidden",value=limit)
+    for item in imagenes
+        div(class="img-contenedor")
+          h2 #{item.imagen.titulo}
+          - var id = item.imagen.id_imagen;
+          a(href="/imagen/"+id)
+              img(src="/archivos/imagenes/"+id+"."+item.imagen.extension)
+          p por #{item.usuario.email}
+  script(id="imagen-template" type="text/x-handlebars-template")
+    div(class="img-contenedor")
+         a(href="/imagen/{{id_imagen}}")
+            h2 {{titulo}}
+         img(src="/archivos/imagenes/{{id_imagen}}.{{extension}}")
+  script(id="imagenes-template" type="text/x-handlebars-template")
+    div(class="img-contenedor")
+          h2 {{imagen.titulo}}
+          a(href="/imagen/{{imagen.id_imagen}}")
+              img(src="/archivos/imagenes/{{imagen.id_imagen}}.{{imagen.extension}}")
+          p por {{usuario.email}}
+  script(src="/archivos/js/client.js")
+    
+

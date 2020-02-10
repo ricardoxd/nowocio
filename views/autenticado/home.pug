@@ -1,0 +1,101 @@
+extends ../layout
+
+block contenido
+  div(class="categorias categoria_home")
+    .wrapper
+      ul.list-inline
+        li
+          a.active(href='') Todo
+        li
+          a(href='',data-id='nowocio') NowOcio
+        li
+          a(href='',data-id='facebook') Facebook
+        li
+          a(href='',data-id='youtube') Youtube
+  include sugerencia/index.pug        
+  include imagen/nuevo/formulario.pug
+  div(id="imagenes")
+    - var limit = imagenes.length;
+    input(id="first",type="text",hidden="hidden",value="0")
+    input(id="limit",type="text",hidden="hidden",value=limit)
+    for item in imagenes
+        - var tipo='nowocio';
+        - var timex='';
+        if item.publishedAt != undefined
+            - tipo ='youtube';
+            -timex=item.publishedAt;
+        else if item.created_time != undefined
+            - tipo = 'facebook';
+            -timex=item.created_time;
+        if item.imagen != undefined
+            -var idpost = item.imagen.id_imagen;
+            -timex =item.imagen.time;
+        else 
+            -var idpost = '';    
+        -var idpost2 = item.id_facebook_feed||'';
+        -var idpost3 = item.id_youtube_feed||'';
+        div(class="img-contenedor "+tipo,data-idyt=idpost3,data-idfb=idpost2,data-id=idpost)
+            - var id = item.usuario.id_usuario;
+            - var nombre = item.usuario.nombre_usuario;
+            -var imgp='/archivos/perfil/'+item.usuario.id_usuario+'.jpg';
+            if item.usuario.id_imagen_perfil != 0
+              -imgp='http://localhost:3000/archivos/imagenes/'+item.usuario.id_imagen_perfil+'.jpg';
+            a(href="/"+nombre)
+                -var red=0; 
+                if item.usuario.facebook_id != undefined
+                  -red++;
+                if item.usuario.youtube_id != undefined
+                  -red++;
+                if red == 2
+                  -var style="margin-right: -4px;" 
+                div(id="perfilmini",style="background-image:url('"+imgp+"')")
+                  div(class="left",style="background-image:url('https://icon-icons.com/icons2/860/PNG/512/happy_icon-icons.com_67810.png')")
+                  if item.usuario.youtube_id != undefined
+                        div(class="right",style="background-image:url('/archivos/imagenes/logo/yt.png')")
+                  if item.usuario.facebook_id != undefined
+                        div(class="right",style="background-image:url('/archivos/imagenes/logo/fb.png');"+style)
+                  div(class="nombre") #{nombre}
+            div(id="fecha") #{timex}    
+            div(class="editaritem") :::
+                ul(class="opcioned")
+                    div(class="reportario") Reportar
+            h4 #{item.imagen.titulo}
+            - var id = item.imagen.id_imagen;
+            a(href="/imagen/"+id)
+             img(src="/archivos/imagenes/"+id+"."+item.imagen.extension)
+             //p por #{item.usuario.email}
+            include megusta/item.pug 
+            include comentario/escribir.pug
+  script(id="imagen-template" type="text/x-handlebars-template")
+    div(class="img-contenedor")
+         a(href="/imagen/{{id_imagen}}")
+            h2 {{titulo}}
+         img(src="{{url}}")
+  script(id="imagenes-template" type="text/x-handlebars-template")
+   include i.js
+   //include megusta/item.pug 
+   //include comentario/escribir.pug
+  script(src="/archivos/js/client.js")
+  script(src="/archivos/js/chat.js")
+  link(href="/archivos/stylesheets/chat.css",rel="stylesheet")
+  include chat/lista.pug
+  -var u = user.nombre_usuario;
+  a(href="/"+u)
+      -var imgp='/archivos/perfil/'+user.id_usuario+'.jpg';
+      if user.id_imagen_perfil != 0
+        -imgp='http://localhost:3000/archivos/imagenes/'+user.id_imagen_perfil+'.jpg';
+      -var red=0; 
+      if user.facebook_id != undefined
+        -red++;
+      if user.youtube_id != undefined
+        -red++;
+      if red == 2
+        -var style="margin-bottom: 45px;margin-right: -19px;"  
+      div(id="perfil",class="home",style="background-image:url('"+imgp+"')")
+        div(class="left",style="background-image:url('https://icon-icons.com/icons2/860/PNG/512/happy_icon-icons.com_67810.png')")
+        if user.youtube_id != undefined
+            div(class="right",style="background-image:url('/archivos/imagenes/logo/yt.png')")
+        if user.facebook_id != undefined
+            div(class="right",style="background-image:url('/archivos/imagenes/logo/fb.png');"+style)
+
+

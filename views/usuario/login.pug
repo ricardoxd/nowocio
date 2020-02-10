@@ -1,0 +1,19 @@
+.contenedor-formulario
+      a(href="/auth/facebook",style="margin-left: 20%")
+        img(src="/archivos/imagenes/fb.png",width= "150px;")
+      a(href="/auth/youtube",style="margin-left: 35%")
+        img(src="/archivos/imagenes/yt.login.png",width= "150px;")
+      .wrap
+        form.formulario(action='/usuario/login', name='formulario_registro', method='POST')
+          div(style="text-align: center;")
+            .input-group
+              input#email(type='email', name='email')
+              label.label(for='email') Correo:
+            .input-group
+              input#password(type='password', name='password')
+              label.label(for='password') Contraseña:
+            input#btn-submit(type='submit', value=__('Entrar'))
+            a(href="/usuario/login/recuperar",class="enlace") #{__('¿Olvidaste tu contraseña?')}
+            br
+            br
+            a(href="/registrar",class="enlace") #{__('No have account')}

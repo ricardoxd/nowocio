@@ -1,0 +1,19 @@
+extends layout
+
+block contenido
+ div(id="contenido")
+  div(style="height:50%;width: 50%;float: left;margin-left: 10%;") 
+      div
+        img(src="/archivos/imagenes/nowocio.portal.png",style="    width: 20%;")
+        p Bienvenido a 
+        h1 NowOcio todo en uno
+        p Conecta con personas de todo el mundo y amigos, desde y hacia cualquier red social o plataforma
+        
+      div
+        p(class="enlace") #{__('Entrar')}
+      include usuario/login.pug  
+  div(style="height:50%;width: 40%;float: right;") 
+    div(style="margin-top: 25px;")
+        p(class="enlace") #{__('Registarse')}
+    include usuario/registro.pug
+    style     .wrap {padding: 10px;}.contenedor-formulario {padding: 20px;} #footer{position: fixed;}.contenedor-formulario a{    padding: 20px;margin-left: 0% !important;}

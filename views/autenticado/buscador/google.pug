@@ -1,0 +1,18 @@
+div(id="buscador")
+    form(onsubmit="return executeQuery();",id="cse-search-box-form-id")
+        div
+            if user != undefined
+                -var b="Buscar en la web o persona";
+            else
+                -var b="Buscar en la web";
+            input(type="text",id="cse-search-input-box-id",placeholder=b,size="25",autocomplete="off")
+            input(type="submit",id="gbuscar",value="")
+        div(class="cse-branding-logo")
+            img(src="//www.google.com/images/poweredby_transparent/poweredby_FFFFFF.gif",alt="Google")
+        div(class="cse-branding-text") Busquedas perzonalizadas
+        div(id="cerrar_google") Cerrar
+div(id="google")
+    script
+        include js/google.js
+    //gcse:search
+    gcse:searchresults-only(gname="results",enableAutoComplete="true")

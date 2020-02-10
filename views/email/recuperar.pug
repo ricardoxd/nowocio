@@ -1,0 +1,17 @@
+html
+  head
+    meta(http-equiv = 'Content-Type', content = 'text/html; charset=UTF-8')
+    title= subject
+    body
+      h1.h1 Recuperación de cuenta NowOcio #{nombre_usuario}
+      p
+        strong Hola #{nombre_usuario}, 
+        | puedes verificar tu cuenta desde los siguientes enlaces
+        br
+        a(href="http://www.nowocio.com/usuario/recuperacion/"+verificacion) Verfificar desde aqui
+        br
+        p o
+        br
+        p http://localhost:3000/usuario/recuperacion/#{verificacion}
+      h2.h2 
+      h3 Atentamente Nowocio.com

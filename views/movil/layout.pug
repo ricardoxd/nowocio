@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset="utf-8")
+    meta(name="viewport",content="width=device-width, initial-scale=1, user-scalable=no")
+    link(rel='stylesheet', href='/archivos/stylesheets/estilo.css')
+    link(rel='stylesheet', href='/archivos/stylesheets/estilo.movil.css')
+    script(src="/socket.io/socket.io.js")
+    script(src="/archivos/js/handlebars-v4.0.10.js")
+    script(src="/archivos/js/jquery-3.2.1.min.js")
+  body
+    nav()
+        ul
+            li 
+                a(href="/") #{__("Home")}
+            li 
+                a(href="/imagen") #{__("Images")}
+            li
+                a(href="/imagen/nueva") #{__('New Imagen')}
+            li
+                a(href="/salir") #{__('Exit')}
+    block contenido

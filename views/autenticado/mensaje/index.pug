@@ -1,0 +1,30 @@
+extends ../../layout
+
+block contenido
+    //-Date.prototype.yyyymmdd = function() {var mm = this.getMonth() + 1;var dd = this.getDate();return [this.getFullYear(),(mm>9 ? '' : '0') + mm,(dd>9 ? '' : '0') + dd,':'].join('-');};    
+        
+    div(id="mensaje",style="width: 1024px;    margin: 0 auto;")
+        h1 Mensajes
+        -var _0xc5ab=["\x67\x65\x74\x54\x69\x6D\x65","\x61\x62\x73","","\x6C\x6F\x67","\x68\x61\x63\x65\x20","\x72\x6F\x75\x6E\x64","\x20\x73\x65\x67\x75\x6E\x64\x6F\x73","\x20\x6D\x69\x6E\x75\x74\x6F\x73","\x20\x68\x6F\x72\x61\x73","\x20\x64\x69\x61\x73","\x20\x73\x65\x6D\x61\x6E\x61\x73","\x20\x6D\x65\x73\x65\x73","\x20\x61\xF1\x6F\x73"];var verhace=function(_0x2295x2){var _0x2295x3= new Date();var _0x2295x4= new Date(_0x2295x2);var _0x2295x5=_0x2295x3[_0xc5ab[0]]()- _0x2295x4[_0xc5ab[0]]();var _0x2295x6=_0x2295x5/ 1000;var _0x2295x7=Math[_0xc5ab[1]](_0x2295x6);var _0x2295x8=_0xc5ab[2];console[_0xc5ab[3]](_0x2295x7);if(_0x2295x7< 60){_0x2295x8= _0xc5ab[4]+ Math[_0xc5ab[5]](_0x2295x7)+ _0xc5ab[6]}else {if(_0x2295x7< 3600){_0x2295x8= _0xc5ab[4]+ Math[_0xc5ab[5]](_0x2295x7/ 60)+ _0xc5ab[7]}else {if(_0x2295x7< 3600* 24){_0x2295x8= _0xc5ab[4]+ Math[_0xc5ab[5]](_0x2295x7/ 3600)+ _0xc5ab[8]}else {if(_0x2295x7< ((3600* 24)* 7)){_0x2295x8= _0xc5ab[4]+ Math[_0xc5ab[5]](_0x2295x7/ (3600* 24))+ _0xc5ab[9]}else {if(_0x2295x7< ((3600* 24)* (7* 4))){_0x2295x8= _0xc5ab[4]+ Math[_0xc5ab[5]](_0x2295x7/ ((3600* 24)* 7))+ _0xc5ab[10]}else {if(_0x2295x7< ((3600* 24)* ((7* 4)* 12))){_0x2295x8= _0xc5ab[4]+ Math[_0xc5ab[5]](_0x2295x7/ (3600* 24))+ _0xc5ab[11]}else {_0x2295x8= _0xc5ab[4]+ Math[_0xc5ab[5]](_0x2295x7/ 3600* 24)+ _0xc5ab[12]}}}}}};return _0x2295x8}
+        div(class="images")
+            -console.log(imagenes);
+            for imagen in imagenes
+              div(id="mensajex")
+                -var con =imagen[''].con;
+                -var id_con =imagen[''].id_con;
+                -var idp = imagen['usuario'].id_imagen_perfil;
+                div(id="cara")
+                   div(id=id_con,class="useronline_"+id_con+" user",data-id=id_con,data-name=con,data-idp=idp,style="background-image:url('/archivos/imagenes/"+idp+".jpg')")
+                p #{verhace(imagen[''].fechaxd)}
+                h2 #{imagen[''].texto}
+                //script var date = new Date('#{imagen[''].fechaxd}');document.write(date.yyyymmdd())
+                - var id = imagen.mensaje.id_mensaje;
+                //a(href="/mensaje/"+id+"/editar") Editar
+                //form(action="/mensaje/"+id+"?_method=DELETE",method="POST")
+                    input(type="submit",value="Eliminar")
+    script $('.images .user').click(function(){var id=$(this).attr('data-id');var name=$(this).attr('data-name');var idp=$(this).attr('data-idp');cargarChat(id+'_'+name+'_'+idp);veronline();});
+    script  $.each($('.images .user'), function( i, l ){if(localStorage.online.indexOf($(this).attr('data-name'))<0){$(this).addClass('vero')};});
+    script(src="/archivos/js/client.js")
+    script(src="/archivos/js/chat.js")
+    link(href="/archivos/stylesheets/chat.css",rel="stylesheet")
+    include ../chat/lista.pug

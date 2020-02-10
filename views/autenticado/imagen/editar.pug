@@ -1,0 +1,23 @@
+extends ../../layout
+
+block contenido
+    - var id = imagen.id_imagen;
+    div(id="entrada")
+        form(action="/imagen/"+id+"?_method=PUT",method="PUT")
+            textarea( name="title", placeholder=__(' ¿Que haces? '),id="title") #{imagen.titulo}
+            //div(id="upload_imagen")
+                .wrapper
+                    button#img-result.no-image Upload Image
+                .upload-result
+                    button.hide-button Close
+                    pre.upload-result__content.
+                      \n  
+            //div
+                label(for="title") #{__('Title')}
+                input(type="text", name="title",value=imagen.titulo, placeholder=__('Title'),id="title")
+            //div
+                label(for="file") #{__('File')}
+                input(type="file", name="file",placeholder=__('File'), id="file")
+            div
+                input(type="submit",value=__('Update'))
+            img(id="image")

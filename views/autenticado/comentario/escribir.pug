@@ -1,0 +1,10 @@
+-var iduser=session.user_id; 
+-var perfil=user.id_imagen_perfil;
+          div(id="comentario")
+            div(class="listacomentarios")
+            div(id="perfilmini",style="background-image:url('http://localhost:3001/archivos/imagenes/"+perfil+".jpg')")
+              div(class="left",style="background-image:url('https://icon-icons.com/icons2/860/PNG/512/happy_icon-icons.com_67810.png')")
+              div(class="right",style="background-image:url('http://pngimg.com/uploads/youtube/youtube_PNG11.png')")
+            div(class="contenido")
+                input(type="text",placeholder="Escribe un comentario aqui...")
+            script(type="javascript") //comentarios()

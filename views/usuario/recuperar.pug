@@ -1,0 +1,12 @@
+extends ../layout
+
+block contenido
+    .contenedor-formulario
+      .wrap
+        form.formulario(action='/usuario/login/recuperar', name='formulario_registro', method='POST')
+          div
+            .input-group
+              input#email(type='email', name='email')
+              label.label(for='email') Correo electrónico:
+              input#btn-submit(type='submit', value='Recuperar')
+            a(href="/login",class="enlace") #{__('Cancelar')}
